@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jayachandra Maruturi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE4;
+    --ink:#201F1C;
+    --ink-soft:#57534A;
+    --indigo:#2B4570;
+    --indigo-soft:#5A759B;
+    --thread:#A8432E;
+    --line:#D8D2C2;
+    --card:#FBF9F3;
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1A1914; --ink:#EFEBE1; --ink-soft:#B4AE9E; --indigo:#7C9BC9;
+      --indigo-soft:#5A759B; --thread:#D2775F; --line:#3A382F; --card:#211F19;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1A1914; --ink:#EFEBE1; --ink-soft:#B4AE9E; --indigo:#7C9BC9;
+    --indigo-soft:#5A759B; --thread:#D2775F; --line:#3A382F; --card:#211F19;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  *{margin:0;padding:0;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--font-body);
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  a{color:inherit;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; top:env(safe-area-inset-top,0px);
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    z-index:10;
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px;}
+  .nav-name{font-family:var(--font-mono); font-size:13px; letter-spacing:.01em;}
+  .nav-links{display:flex; gap:22px; font-size:13px; font-family:var(--font-mono);}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--thread);}
+  .nav-links a.rule{text-decoration-line:underline; text-decoration-color:var(--line);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 56px; position:relative; overflow:hidden;}
+  .weave{position:absolute; inset:0; z-index:0; opacity:.5; pointer-events:none;}
+  .hero .wrap{position:relative; z-index:1;}
+  .eyebrow{font-family:var(--font-mono); font-size:13px; color:var(--indigo); margin-bottom:18px;}
+  .hero h1{
+    font-family:var(--font-display); font-weight:500; font-size:clamp(40px,7vw,72px);
+    line-height:1.02; letter-spacing:-0.01em; max-width:11ch;
+  }
+  .hero .role{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(19px,2.6vw,24px); color:var(--indigo-soft); margin-top:14px;
+  }
+  .hero p.lede{margin-top:22px; max-width:56ch; font-size:16.5px; color:var(--ink-soft);}
+  .hero-contact{display:flex; flex-wrap:wrap; gap:22px; margin-top:32px; font-family:var(--font-mono); font-size:13px;}
+  .hero-contact a{text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color .15s, color .15s;}
+  .hero-contact a:hover{border-color:var(--thread); color:var(--thread);}
+
+  /* ---------- Stat strip ---------- */
+  .stats{border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stats .wrap{display:grid; grid-template-columns:repeat(3,1fr); padding:0;}
+  .stat{padding:26px 24px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:var(--font-display); font-size:clamp(26px,4vw,36px); color:var(--thread);}
+  .stat .label{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .sec-num{font-family:var(--font-mono); font-size:13px; color:var(--indigo-soft);}
+  h2{font-family:var(--font-display); font-weight:500; font-size:28px;}
+
+  /* ---------- Experience ---------- */
+  .role-block{display:grid; grid-template-columns:140px 1fr; gap:24px; padding:22px 0;}
+  .role-block + .role-block{border-top:1px solid var(--line);}
+  .role-meta{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); line-height:1.7;}
+  .role-title{font-family:var(--font-display); font-size:19px; font-weight:500; margin-bottom:2px;}
+  .role-org{font-size:14px; color:var(--indigo); margin-bottom:12px;}
+  ul.bullets{list-style:none;}
+  ul.bullets li{position:relative; padding-left:18px; margin-bottom:8px; font-size:15px; color:var(--ink-soft); max-width:68ch;}
+  ul.bullets li::before{content:"—"; position:absolute; left:0; color:var(--line); color:var(--thread);}
+
+  /* ---------- Projects ---------- */
+  .proj{padding:20px 0; border-top:1px solid var(--line);}
+  .proj:first-child{border-top:none;}
+  .proj h3{font-family:var(--font-display); font-weight:500; font-size:17.5px; margin-bottom:8px; max-width:52ch;}
+  .proj p{font-size:14.5px; color:var(--ink-soft); max-width:66ch;}
+
+  /* ---------- Skills / Education grid ---------- */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .skill-group{margin-bottom:22px;}
+  .skill-group h4{font-family:var(--font-mono); font-size:12.5px; color:var(--indigo); margin-bottom:8px; text-transform:none;}
+  .skill-group p{font-size:14.5px; color:var(--ink-soft);}
+  .edu-item{margin-bottom:20px;}
+  .edu-item .degree{font-family:var(--font-display); font-size:16.5px;}
+  .edu-item .inst{font-size:14px; color:var(--indigo);}
+  .edu-item .meta{font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-top:2px;}
+
+  /* ---------- Certs & POR ---------- */
+  .chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{border:1px solid var(--line); border-radius:3px; padding:7px 12px; font-size:13.5px; font-family:var(--font-mono); color:var(--ink-soft);}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 64px;}
+  footer .row{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px;}
+  footer h2{max-width:12ch;}
+  footer .links{display:flex; flex-direction:column; gap:10px; font-family:var(--font-mono); font-size:14px;}
+  footer .links a{text-decoration:none; border-bottom:1px solid var(--line);}
+  footer .copy{margin-top:48px; font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);}
+
+  @media (max-width:640px){
+    .stats .wrap{grid-template-columns:1fr; }
+    .stat{border-right:none; border-bottom:1px solid var(--line);}
+    .stat:last-child{border-bottom:none;}
+    .role-block{grid-template-columns:1fr; gap:6px;}
+    .two-col{grid-template-columns:1fr; gap:8px;}
+    .nav-links{gap:14px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">JAYACHANDRA MARUTURI</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="weave" viewBox="0 0 920 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="var(--line)" stroke-width="1">
+      <line x1="0" y1="40" x2="920" y2="40"/><line x1="0" y1="90" x2="920" y2="90"/>
+      <line x1="0" y1="140" x2="920" y2="140"/><line x1="0" y1="190" x2="920" y2="190"/>
+      <line x1="0" y1="240" x2="920" y2="240"/><line x1="0" y1="290" x2="920" y2="290"/>
+      <line x1="680" y1="0" x2="680" y2="320"/><line x1="760" y1="0" x2="760" y2="320"/>
+      <line x1="840" y1="0" x2="840" y2="320"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Product &amp; operations — data-led</div>
+    <h1>Jayachandra Maruturi</h1>
+    <p class="role">Management Trainee, Alok Industries · MBA, IIM Sirmaur</p>
+    <p class="lede">I turn manufacturing and market data into decisions — moving between the shop floor, SAP, and spreadsheets to keep orders, products, and customers moving in sync.</p>
+    <div class="hero-contact">
+      <a href="mailto:m.v.r.a.jayachandra@gmail.com">m.v.r.a.jayachandra@gmail.com</a>
+      <a href="tel:+919550019035">+91 95500 19035</a>
+      <a href="https://linkedin.com/in/jayachandra-maruturi" target="_blank" rel="noopener">linkedin.com/in/jayachandra-maruturi</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num">₹30L+</div><div class="label">Net revenue driven through bulk orders</div></div>
+    <div class="stat"><div class="num">10+</div><div class="label">New products developed as samples</div></div>
+    <div class="stat"><div class="num">200+</div><div class="label">Students trained in robotics workshops</div></div>
+  </div>
+</div>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Experience</h2></div>
+
+    <div class="role-block">
+      <div class="role-meta">Jun 2025 —<br>Present</div>
+      <div>
+        <div class="role-title">Management Trainee</div>
+        <div class="role-org">Alok Industries Ltd. (subsidiary of RIL)</div>
+        <ul class="bullets">
+          <li>Achieved net revenue of more than 30 lakhs through bulk orders, and assisted in developing 10+ new products as samples.</li>
+          <li>Maintained SAP data accuracy, managed fabric meterage and sample dispatches, and supported smooth customer order fulfilment.</li>
+          <li>Maintained accurate enquiry and complaint data for analysis, coordinating plant and marketing teams for timely resolution.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role-block">
+      <div class="role-meta">Apr 2024 —<br>Jun 2024</div>
+      <div>
+        <div class="role-title">Intern</div>
+        <div class="role-org">Vidunit (PunToon Kids)</div>
+        <ul class="bullets">
+          <li>Identified and qualified 50+ potential suppliers for kids' products based on budget, MOQ, and brand positioning.</li>
+          <li>Analysed web user traffic and recommended mobile-optimised UX features to improve engagement across devices.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Projects</h2></div>
+
+    <div class="proj">
+      <h3>Impact of customer reviews and ratings on online apparel purchase decisions</h3>
+      <p>Ran ANOVA, K-means clustering, and multiple linear regression on a 300+ response dataset using SPSS to isolate what actually drives purchase intent.</p>
+    </div>
+    <div class="proj">
+      <h3>Sprint-based development of a mood-centric music platform</h3>
+      <p>Ran 20+ team scrums across 3 sprints under Scrum methodology, resolving blockers along the way to ship a functional MVP shown at the final demo.</p>
+    </div>
+    <div class="proj">
+      <h3>Seoul bike demand forecasting</h3>
+      <p>Built ANN, Random Forest, and SVM regression models across 8+ weather and time variables; Random Forest gave the best fit, RMSE 230.</p>
+    </div>
+    <div class="proj">
+      <h3>Prediction of reference evapotranspiration</h3>
+      <p>Developed Random Forest and SVM regression models on meteorological and crop data, reaching R² above 95% across 1,200+ instances.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Skills &amp; certifications</h2></div>
+    <div class="two-col">
+      <div>
+        <div class="skill-group">
+          <h4>Programming &amp; analysis</h4>
+          <p>Python, SQL, R</p>
+        </div>
+        <div class="skill-group">
+          <h4>Data &amp; visualisation</h4>
+          <p>MS Excel (Advanced), Power BI</p>
+        </div>
+        <div class="skill-group">
+          <h4>Product &amp; project tools</h4>
+          <p>Jira, Wix</p>
+        </div>
+        <div class="skill-group">
+          <h4>Methods</h4>
+          <p>Agile, Scrum</p>
+        </div>
+      </div>
+      <div>
+        <div class="chips">
+          <span class="chip">Python Data Structures — Coursera</span>
+          <span class="chip">Power BI Fundamentals — Coursera</span>
+          <span class="chip">SQL Fundamentals for Data Analysts — Coursera</span>
+          <span class="chip">Certified Product Management Professional — Henry Harvin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Education</h2></div>
+    <div class="edu-item">
+      <div class="degree">Master of Business Administration</div>
+      <div class="inst">Indian Institute of Management (IIM) Sirmaur</div>
+      <div class="meta">2023 – 2025 · CGPA 7.07</div>
+    </div>
+    <div class="edu-item">
+      <div class="degree">Bachelor of Technology</div>
+      <div class="inst">National Institute of Technology (NIT) Calicut</div>
+      <div class="meta">2017 – 2021 · CGPA 7.94</div>
+    </div>
+    <div class="edu-item">
+      <div class="degree">XII (Intermediate)</div>
+      <div class="inst">Sri Chaitanya Boys Jr. College</div>
+      <div class="meta">2015 – 2017 · 96.1%</div>
+    </div>
+    <div class="edu-item">
+      <div class="degree">X (SSC)</div>
+      <div class="inst">Sri Chaitanya High School</div>
+      <div class="meta">2014 – 2015 · CGPA 9.7</div>
+    </div>
+  </div>
+</section>
+
+<section id="por">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Position of responsibility</h2></div>
+    <div class="role-block" style="border-top:none; padding-top:0;">
+      <div class="role-meta">2018 —<br>2021</div>
+      <div>
+        <div class="role-title">Core Member</div>
+        <div class="role-org">Robotics Interest Group, NIT Calicut</div>
+        <ul class="bullets">
+          <li>Conducted robotics workshops across various topics, training 200+ first-year students and robotics enthusiasts over three years.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="row">
+      <h2>Let's talk.</h2>
+      <div class="links">
+        <a href="mailto:m.v.r.a.jayachandra@gmail.com">m.v.r.a.jayachandra@gmail.com</a>
+        <a href="tel:+919550019035">+91 95500 19035</a>
+        <a href="https://linkedin.com/in/jayachandra-maruturi" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 Jayachandra Maruturi</div>
+  </div>
+</footer>
+
+</body>
+</html>
